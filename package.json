@@ -2,7 +2,7 @@
   "name": "ou-media-player-test",
   "private": true,
   "version": "0.1.0",
-  "description": "Remote unit tests for OU Media Player.",
+  "description": "Remote unit tests for OU Media Player, at The Open University.",
   "author": "Nick Freear <nfreear@yahoo.co.uk> (https://github.com/nfreear)",
   "devDependencies": {
     "minimist": "*",
@@ -12,7 +12,7 @@
     "chai-http": "*"
   },
   "scripts": {
-    "test": "mocha --globals base=http://iet-embed-acct.open.ac.uk"
+    "test": "mocha --globals base=http://embed.open.ac.uk test/ou-p*.js"
   },
   "repository": {
     "type": "git",
