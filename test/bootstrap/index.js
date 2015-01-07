@@ -2,7 +2,8 @@
  * OU Media Player - test bootstrap.
  */
 
-var R = global.R = require('../../oump-test-config');
+var R = global.R = require('./test-config');
+
 global.request = require('request');
 
 /*!
