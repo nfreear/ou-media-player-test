@@ -6,19 +6,8 @@
 
 'use strict';
 
-if (typeof require !== 'undefined') {
-  var chai = require("chai")
-    , request = require("request")
-    , R = require("../oump-test-config")
-    ;
-}
 
-var expect = chai.expect
-  , should = chai.should()
-  ;
-
-
-describe("Testing OU Podcasts ...", function () {
+describe("Test OU Podcasts ...", function () {
   this.timeout(R.timeout);
 
   it("...Should return a 200 code and contain an RSS feed", function (done) {
@@ -39,4 +28,5 @@ describe("Testing OU Podcasts ...", function () {
       done();
     });
   });
+
 });

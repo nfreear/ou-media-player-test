@@ -7,20 +7,6 @@
 
 'use strict';
 
-if (typeof require !== 'undefined') {
-    var chai = require("chai")
-      , request = require('request')
-      //, http = require("http")
-      , R = require("../oump-test-config")
-      ;
-}
-
-var expect = chai.expect
-  , should = chai.should()
-  , __get = function (path, callback) {
-    request(R.base + path, callback);
-  };
-
 /*before(function () {
   console.log("before");
 });*/

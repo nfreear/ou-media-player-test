@@ -17,6 +17,7 @@ module.exports = {
   podcast: "https://podcast.open.ac.uk",
   proxy:  noproxy ? null : "http://wwwcache.open.ac.uk:80",
   proxy_: noproxy ? null : "http://wwwcache.open.ac.uk",
+  external_url: "https://www.google.co.uk/",
   mailto: [ "nfreear@yahoo.co.uk" ],
   timeout: 5000, // Milliseconds.
   interval: 5    // Wait 5 seconds between requests - play nice, like any robot should!

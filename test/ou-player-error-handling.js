@@ -2,18 +2,6 @@
   Test error handling by OU media Player...
 */
 
-var chai = require('chai')
-  , chaiHttp = require('chai-http')
-  , R = require("../oump-test-config")
-  ;
-
-chai.use(chaiHttp);
-
-
-var page = chai.request(R.base).get
-  , expect = chai.expect
-  , should = chai.should();
-
 
 describe("Test OU Media Player - error handling:", function () {
   this.timeout(R.timeout);

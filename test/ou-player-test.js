@@ -1,33 +1,10 @@
 /*!
-  OU Media Player tests - with "chai-http".
+  OU Media Player - tests with "chai-http".
 
   @link http://chaijs.com/plugins/chai-http
 */
 
-var chai = require('chai')
-  , chaiHttp = require('chai-http')
-  , R = require("../oump-test-config")
-  ;
-
-chai.use(chaiHttp);
-
-
-/*chai.simple_get = function (path, callback) {
-  var that = this;
-  it("...", function (done) {
-    that.get(path).end(function (err, res) {
-      var page = res.text;
-
-      callback(err, res, page, done);
-    });
-  });
-  return that;
-}*/
-
-
-var page = chai.request(R.base).get
-  , expect = chai.expect
-  , should = chai.should();
+//require('./bootstrap');
 
 
 describe("Test OU Media Player - embedded player", function () {
@@ -61,6 +38,7 @@ describe("Test OU Media Player - embedded player", function () {
   });
 });
 
+
 describe("Test a restricted-access player", function () {
 
 return;
@@ -80,7 +58,7 @@ return;
       res.should.have.a.status(200);
       res.should.be.html;
 
-      //doc.should.contain('"commit":');
+      //doc.should.contain('...');
       done;
     });  
   });
@@ -160,32 +138,3 @@ describe("Test JSON, Javascript etc.", function () {
 
 });
 
-
-return;
-
-/*
-describe("Testing OU Podcasts ...", function () {
-  this.timeout(timeout_ms);
-
-  it("...Should return a 200 code and contain an RSS feed", function (done) {
-
-    podcast("/feeds/student-experiences/player.xml").end(function (err, res) {
-      var doc = res.text;
-      console.log(res);
-
-      expect(err).to.be.null;
-      res.should.have.a.status(200);
-      //res.should.be.xml;
-      expect(res.headers["content-type"]).to.contain("application/xml");
-
-      /*
-      doc.should.contain('<?xml version="1.0" encoding="UTF-8"?>');
-      doc.should.contain("<rss xmlns:");
-      doc.should.contain("<channel>");
-      *-/
-
-      done();
-    });
-  });
-});
-*/
