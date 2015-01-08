@@ -30,8 +30,11 @@ global.expect = chai.expect;
 //global.chai.use(require('chai-spies'));
 chai.use(require('chai-http'));
 
+// FAILS :(
+//require('superagent-proxy')(chai.request.Test);
 
-global.page = chai.request(R.base).get;
+
+global.page = chai.request(R.base)/*.proxy(R.proxy)*/.get;
 global.proxy = chai.request(R.proxy_).get;
 
 

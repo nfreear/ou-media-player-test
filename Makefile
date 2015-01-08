@@ -13,6 +13,16 @@ TESTS = test/ou-p*.js
 test: test-iet-embed-acct
 
 
+test-proxy:
+	$(MOCHA)=http://iet-embed-acct.open.ac.uk  test/*-proxy-*.js
+
+test-noproxy:
+	$(MOCHA)=http://iet-embed-acct.open.ac.uk,noproxy $(TESTS)
+
+test-debug:
+	$(MOCHA)=http://iet-embed-acct.open.ac.uk,debug $(TESTS)
+
+
 # IT-EUD hosting.
 test-it-mediaplayer-acct:
 	$(MOCHA)=https://mediaplayer-acct.open.ac.uk $(TESTS)
