@@ -7,7 +7,7 @@
 'use strict';
 
 
-describe("Test external site (proxy/no proxy)", function () {
+describe("Test external site (proxy/no proxy) - request", function () {
   this.timeout(R.timeout);
 
   it(R.external_url, function (done) {
@@ -29,15 +29,19 @@ describe("Test external site (proxy/no proxy)", function () {
 });
 
 
-describe("Test an external site (proxy) - chai-http", function () {
+describe("Test an external site (proxy/no proxy) - chai-http", function () {
   this.timeout(R.timeout);
 
-  it("ERROR: " + R.external_url, function (done) {
+  it(R.external_url, function (done) {
 
-    proxy(R.external_url).end(function (err, res) {
+    external(R.external_url).end(function (err, res) {
+      var doc = res && res.text;
 
-      err.message.should.contain("ENOTFOUND");
+      //err.message.should.contain("ENOTFOUND");
       expect(err).to.be.null;
+      expect(res).to.not.be.null;
+      res.should.be.html;
+      res.should.contain("Google");
 
       done();
     });

@@ -2,7 +2,7 @@
 # OU Media Player - test Makefile.
 #
 
-MOCHA = @NODE_ENV=test ./node_modules/.bin/mocha \
+MOCHA = NODE_ENV=test ./node_modules/.bin/mocha \
     --require ./test/bootstrap \
     --reporter spec \
     --globals base

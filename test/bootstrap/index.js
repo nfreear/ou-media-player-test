@@ -31,12 +31,17 @@ global.expect = chai.expect;
 chai.use(require('chai-http'));
 
 // FAILS :(
-//require('superagent-proxy')(chai.request.Test);
+require('superagent-proxy')(chai.request);
 
+global.page = function (path) {
+  var req = chai.request(R.base).get(path);
+  return R.proxy ? req.proxy(R.proxy) : req;
+};
 
-global.page = chai.request(R.base)/*.proxy(R.proxy)*/.get;
-global.proxy = chai.request(R.proxy_).get;
-
+global.external = function (url) {
+  var req = chai.request('').get(url);
+  return R.proxy ? req.proxy(R.proxy) : req;
+};
 
 /*!
  * Import project

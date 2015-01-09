@@ -125,8 +125,11 @@ describe("Test JSON, Javascript etc.", function () {
       //res.should.be.javascript;
       //res.should.be.utf8;
       res.headers["content-type"].should.contain("text/javascript");
-      //res.headers.should.not.contain("x-powered-by");
-      res.headers["x-powered-by"].should.not.contain("PHP/");
+      res
+        .headers.should.not.have.property("x-powered-by")
+        .or
+        .headers["x-powered-by"].should.not.contain("PHP/");
+      res.headers["server"].should.not.match(/\d\.\d/);  //(/Apache/i)
 
       doc.should.match(/^CB\(\{"/);
       doc.should.contain('"version":"1.0"');
