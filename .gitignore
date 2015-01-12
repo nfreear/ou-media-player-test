@@ -33,6 +33,7 @@ node_modules
 .DS_Store
 *copy
 *.diff
+/_dev
 
 
 #End.

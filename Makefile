@@ -26,6 +26,9 @@ help:
 test: test-iet-embed-acct
 
 
+test-one:
+	$(MOCHA)=http://iet-embed-acct.open.ac.uk --grep=embed test/ou-player-test.js
+
 test-proxy:
 	$(MOCHA)=http://iet-embed-acct.open.ac.uk  test/*-proxy-*.js
 
