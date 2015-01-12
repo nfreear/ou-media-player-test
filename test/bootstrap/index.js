@@ -30,7 +30,7 @@ global.expect = chai.expect;
 //global.chai.use(require('chai-spies'));
 chai.use(require('chai-http'));
 
-// FAILS :(
+// Now succeeds ;) [Bug: #4]
 require('superagent-proxy')(chai.request);
 
 global.page = function (path) {

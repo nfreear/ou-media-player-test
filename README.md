@@ -1,5 +1,7 @@
 # ou-media-player-test
 
+[![Build status][travis-img]][travis]
+
 Remote unit tests for OU Media Player, at The Open University.
 
 * <https://mediaplayer.open.ac.uk>
@@ -41,3 +43,5 @@ If you're behind a proxy then you may need to add this to your `~/.gitconfig` fi
 [mocha]:   http://mochajs.org/
 [chai]:    http://chaijs.com/
 [chai-http]: https://github.com/chaijs/chai-http
+[travis]:  https://travis-ci.org/nfreear/ou-media-player-test
+[travis-img]: https://api.travis-ci.org/nfreear/ou-media-player-test.svg?branch=master "Build status"

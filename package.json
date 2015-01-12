@@ -16,11 +16,11 @@
     "chai-http": "*"
   },
   "scripts": {
-    "test": "make test"
+    "test": "OUMP_NP=1 make test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/nfreear/ou-media-player-test.git"
+    "url": "https://github.com/nfreear/ou-media-player-test"
   },
   "keywords": [ "OpenUniversity", "OU", "IET", "IET-OU", "MediaPlayer", "test" ],
   "license": "MIT"
