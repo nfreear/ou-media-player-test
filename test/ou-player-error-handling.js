@@ -16,7 +16,7 @@ describe("Test OU Media Player - error handling:", function () {
       res.statusCode.should.equal(400);
       doc.should.contain("I expect a 10 character shortcode");
 
-      done();
+      delay(done);
     });
   });
 
@@ -31,7 +31,7 @@ describe("Test OU Media Player - error handling:", function () {
       res.statusCode.should.equal(404);
       doc.should.contain("Podcast data collection deleted or not found");
 
-      done();
+      delay(done);
     });
   });
 
@@ -46,7 +46,7 @@ describe("Test OU Media Player - error handling:", function () {
       res.statusCode.should.equal(404);
       doc.should.contain("404 Page Not Found");
 
-      done();
+      delay(done);
     });
   });
 
@@ -66,7 +66,7 @@ describe("Test OU Media Player - error handling:", function () {
       doc.should.contain("A PHP Error was encountered");
       doc.should.contain("Severity:");
 
-      done();
+      delay(done);
     });
   });
 

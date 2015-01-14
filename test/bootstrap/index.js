@@ -6,15 +6,13 @@ var R = global.R = require('./test-config');
 
 global.request = require('request');
 
-/*!
- * Attach ES6 Shim
+/*! Attach ES6 Shim.
  */
 if (typeof Promise === 'undefined') {
   //require('es6-shim');
 }
 
-/*!
- * Attach chai to global should
+/*! Attach chai to global should.
  */
 
 var chai = global.chai = require('chai');
@@ -23,8 +21,7 @@ global.should = chai.should();
 global.expect = chai.expect;
 
 
-/*!
- * Chai Plugins
+/*! Chai Plugins.
  */
 
 //global.chai.use(require('chai-spies'));
@@ -33,15 +30,43 @@ chai.use(require('chai-http'));
 // Now succeeds ;) [Bug: #4]
 require('superagent-proxy')(chai.request);
 
+
+/*! Helpers and wrappers.
+*/
+
 global.page = function (path) {
-  var req = chai.request(R.base).get(path);
+  var req = chai.request(R.base).get(path).set('User-Agent', R.agent);
   return R.proxy ? req.proxy(R.proxy) : req;
 };
 
 global.external = function (url) {
-  var req = chai.request('').get(url);
+  var req = chai.request('').get(url).set('User-Agent', R.agent);
   return R.proxy ? req.proxy(R.proxy) : req;
 };
+
+var temporal = require('temporal')
+  , count = 0
+  , dt_start = new Date();
+
+global.delay = function (done_callback) {
+  var dt_end = new Date();
+
+  count++;
+
+  console.log('    > Delay: ' + count + ' * ' + R.delay,
+    '| Elapsed: ' + (dt_end - dt_start) + ' ms');
+
+  dt_start = dt_end;
+
+  if (!R.delay) {
+    return done_callback();
+  }
+
+  temporal.delay(count * R.delay, function () {
+    done_callback();
+  });
+};
+
 
 /*!
  * Import project
@@ -51,7 +76,18 @@ global.external = function (url) {
 
 
 
-/*chai.simple_get = function (path, callback) {
+/*
+global.NOT_WORKING_my_it = function (text, callback) {
+  count++;
+
+  console.log("'it' count", count, R.interval, text);
+
+  temporal.delay(count * R.interval, function () {
+    it(text, callback);
+  });
+};
+
+chai.simple_get = function (path, callback) {
   var that = this;
   it("...", function (done) {
     that.get(path).end(function (err, res) {

@@ -25,7 +25,7 @@ describe("Test OU Podcasts ...", function () {
       doc.should.contain("<rss xmlns:");
       doc.should.contain("<channel>");
 
-      done();
+      delay(done);
     });
   });
 

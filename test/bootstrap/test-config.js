@@ -11,6 +11,8 @@ base_url = (base_url && base_url[1]) || "http://iet-embed-acct.open.ac.uk";
 
 var noproxy = argv.globals && argv.globals.match(/noproxy/);
 
+var delay = argv.globals && argv.globals.match(/delay=(\d+)/);
+
 var R = module.exports = {
   debug: debug ? true : false,
   mode: "queue-fork",  // By default, add to queue and fork, in server mode.
@@ -20,8 +22,9 @@ var R = module.exports = {
   proxy_: noproxy ? null : "http://wwwcache.open.ac.uk",
   external_url: "https://www.google.co.uk/",
   mailto: [ "nfreear@yahoo.co.uk" ],
-  timeout: 7000, // Milliseconds.
-  interval: 5    // Wait 5 seconds between requests - play nice, like any robot should!
+  agent: '@nfreear/ou-media-player-test',
+  timeout: 9000,  // Milliseconds.
+  delay: delay ? delay[1] : 300  // Wait X milli-seconds between requests - play nice, like any robot should!
 };
 
 if (R.debug) {

@@ -3,16 +3,20 @@
 #
 # Example:  OUMP_NP=1 make test
 
+NOPROXY =
 ifdef OUMP_NP
-    GLOBALS=noproxy,
-else
-    GLOBALS=
+    NOPROXY = noproxy,
+endif
+
+DELAY =
+ifdef OUMP_DELAY
+    DELAY = delay=$(OUMP_DELAY),
 endif
 
 MOCHA = NODE_ENV=test ./node_modules/.bin/mocha \
     --require ./test/bootstrap \
     --reporter spec \
-    --globals $(GLOBALS)base
+    --globals $(NOPROXY)$(DELAY)base
 TESTS = test/ou-p*.js
 
 
@@ -25,6 +29,8 @@ help:
 
 test: test-iet-embed-acct
 
+#test-delay:
+#	$(MOCHA)=http://iet-embed-acct.open.ac.uk  test/delay-test.js
 
 test-one:
 	$(MOCHA)=http://iet-embed-acct.open.ac.uk --grep=embed test/ou-player-test.js

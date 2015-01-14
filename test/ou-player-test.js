@@ -33,7 +33,7 @@ describe("Test OU Media Player - embedded player", function () {
       doc.should.contain/*.htmlElement*/("<video");
       doc.should.contain("mejs.MediaElementPlayer");
 
-      done();
+      delay(done);
     });
   });
 });
@@ -59,7 +59,7 @@ return;
       res.should.be.html;
 
       //doc.should.contain('...');
-      done;
+      delay(done);
     });  
   });
 
@@ -84,7 +84,7 @@ describe("Test JSON, Javascript etc.", function () {
       doc.should.match(/^\{\"/);
       doc.should.contain('"commit":');
 
-      done();
+      delay(done);
     });
   });
 
@@ -105,7 +105,7 @@ describe("Test JSON, Javascript etc.", function () {
       doc.should.match(/^\/\*\!/);
       doc.should.contain('core_version = "1.9.1",');
 
-      done();
+      delay(done);
     });
   });
 
@@ -135,7 +135,7 @@ describe("Test JSON, Javascript etc.", function () {
       doc.should.contain('"version":"1.0"');
       doc.should.contain('"html":"<iframe ');
 
-      done();
+      delay(done);
     });
   });
 

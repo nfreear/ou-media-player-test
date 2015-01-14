@@ -8,6 +8,7 @@
     "minimist": "*",
     "request": "*",
     "superagent-proxy": "*",
+    "temporal": "*",
     "mocha": "*",
     "chai": "*",
     "chai-http": "git+https://github.com/chaijs/chai-http#master"

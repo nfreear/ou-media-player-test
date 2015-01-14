@@ -23,7 +23,7 @@ describe("Test external site (proxy/no proxy) - request", function () {
 
       doc.should.contain("<!");
 
-      done();
+      delay(done);
     });
   });
 });
@@ -43,7 +43,7 @@ describe("Test an external site (proxy/no proxy) - chai-http", function () {
       res.should.be.html;
       res.should.contain("Google");
 
-      done();
+      delay(done);
     });
   });
 });

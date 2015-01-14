@@ -30,7 +30,7 @@ describe("Test OU Media Player - legacy tests", function () {
 
       //expect(rosie.contentType()).to.equal("text/html");
 
-      done();
+      delay(done);
     });
   });
 });
