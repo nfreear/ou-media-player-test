@@ -60,6 +60,11 @@ test-iet-embed-live:
 mocha-help:
 	$(MOCHA)=1 --help
 
+sanity-check:
+	wget -v -P _dev/ http://iet-embed-acct.open.ac.uk/version.json
+	more _dev/version.json
+	#- sleep 1
+
 .PHONY: help test test-it-player-acct test-it-player-live test-iet-embed-acct test-iet-embed-live mocha-help
 
 #End.

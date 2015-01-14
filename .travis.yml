@@ -7,9 +7,7 @@ before_script:
   - npm install -g mocha
 
 script:
-  # Sanity check!
-  - wget -v -P _dev/ http://iet-embed-acct.open.ac.uk/version.json
-  - more _dev/version.json
-  - sleep 1
-  #- npm test
-  - OUMP_NP=1 make test-one
+  #- make sanity-check
+  #- sleep 1
+  - npm test
+  #- OUMP_NP=1 make test-one
