@@ -8,20 +8,20 @@ ifdef OUMP_NP
     NOPROXY = noproxy,
 endif
 
-DELAY =
-ifdef OUMP_DELAY
-    DELAY = delay=$(OUMP_DELAY),
-endif
-
 REPORTER = spec
 ifdef OUMP_RT
     REPORTER = $(OUMP_RT)
 endif
 
+GREP =
+ifdef OUMP_RE
+    GREP = --grep $(OUMP_RE)
+endif
+
 MOCHA = NODE_ENV=test ./node_modules/.bin/mocha \
     --require ./test/bootstrap \
-    --reporter $(REPORTER) \
-    --globals $(NOPROXY)$(DELAY)base
+    --reporter $(REPORTER) $(GREP) \
+    --globals $(NOPROXY)base
 TESTS = test/ou-p*.js
 OUT = _out/
 

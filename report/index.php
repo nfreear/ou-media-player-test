@@ -5,9 +5,10 @@
 * @author Nick Freear, 15 January 2015.
 * @copyright © 2015 The Open University.
 */
-error_reporting( E_ALL );
-ini_set( 'display_errors', 1 );
-//header( 'Content-Type: text/html; charset=utf-8' );
+#error_reporting( E_ALL );
+#ini_set( 'display_errors', 1 );
+#header( 'Content-Type: text/html; charset=utf-8' );
+header( 'Access-Control-Allow-Origin: *' );
 
 
 $report_file = '../_out/report.json';

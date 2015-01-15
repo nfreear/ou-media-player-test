@@ -2,13 +2,14 @@
 
 <style>
 body { background: #fdfdfd; color: #222; font: 1em sans-serif; margin: 0 2em; }
-pre { font-size: 1.1em; }
+pre { font-size: 1.1em; line-height: 1.6em; max-width: 300em; }
 
 .tick, .passing { color: green; }
 .er, .ex, .failing { color: red; }
 .trace, .debug { color: #666; }
 .passing { margin-top: 1em; }
 .failing { margin-bottom: 1em; }
+.line { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .loading { text-align: center; font-size: 3em; color: orange; white-space: normal; }
 </style>
@@ -16,7 +17,7 @@ pre { font-size: 1.1em; }
 <h1>Test Report</h1>
 
 <p id="test-date">Test date: <span></span></p>
-<p id="test-url"></p>
+<p id="test-url">URL: <a></a></p>
 
 <p id="reports">Raw reports:
   <a href="../_out/report-spec.txt">text (spec)</a> |
@@ -28,18 +29,19 @@ pre { font-size: 1.1em; }
 
 
 <script src="//cdn.jsdelivr.net/superagent/0.18.0/superagent.min.js"></script>
-<script src="//cdn.enderjs.com/jeesh.min.js"></script>
+<!--<script src="//cdn.enderjs.com/jeesh.min.js"></script>-->
 <script>
-$(document).ready(function () {
+//$(document).ready(function () {
+(window.onload = function () {
 
   var spec_file = "../_out/report-spec.txt"
     , json_file = "../_out/report.json"
-    , $ = window.$
     , get = window.superagent.get
-    , $spec = $("#report-spec")
+    , Q = function (s) { return document.querySelector(s) }
+    , $spec = Q("#report-spec")
     //, $json = $("#report-json")
-    , $date = $("#test-date span")
-    , $url  = $("#test-url");
+    , $date = Q("#test-date span")
+    , $url  = Q("#test-url a");
 
   //console.log("Hello", superagent, $report);
 
@@ -81,16 +83,15 @@ $(document).ready(function () {
 
     //console.log(html);
 
-    $spec.html(html.join(''));
-
-    $date.html(resp.headers['last-modified']);
+    $spec.innerHTML = html.join('');
+    $date.innerHTML = resp.headers['last-modified'];
   });
 
   get(json_file, function (resp) {
     if (200 == resp.status) {
       console.log("Test report (JSON):", JSON.parse(resp.text));
     }
-    $date.html(resp.headers['last-modified']);
+    $date.innerHTML = resp.headers['last-modified'];
     console.log(resp);
   });
 
