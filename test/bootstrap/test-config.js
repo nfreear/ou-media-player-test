@@ -25,8 +25,9 @@ var R = module.exports = {
   agent: '@nfreear/ou-media-player-test',
   reporter: argv.reporter || 'spec',
   timeout: 9000,  // Milliseconds.
-  delay: delay ? delay[1] : 200  // Wait X milli-seconds between requests - play nice, like any robot should!
+  delay: delay ? delay[1] : 150  // Wait X milli-seconds between requests - play nice, like any robot should!
 };
+R.debug = R.debug && "json" !== R.reporter;
 
 if (R.debug) {
   console.log("Argv: ", argv);

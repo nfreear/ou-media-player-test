@@ -35,11 +35,13 @@ require('superagent-proxy')(chai.request);
 */
 
 global.page = function (path) {
+  log('    > Path: ' + path);
   var req = chai.request(R.base).get(path).set('User-Agent', R.agent);
   return R.proxy ? req.proxy(R.proxy) : req;
 };
 
 global.external = function (url) {
+  log('    > Path: ' + url);
   var req = chai.request('').get(url).set('User-Agent', R.agent);
   return R.proxy ? req.proxy(R.proxy) : req;
 };
@@ -53,10 +55,8 @@ global.delay = function (done_callback) {
 
   count++;
 
-  if ('json' !== R.reporter) {
-    console.log('    > Delay: ' + count + ' * ' + R.delay,
-      '| Elapsed: ' + (dt_end - dt_start) + ' ms');
-  }
+  log('    > Delay: ' + count + ' * ' + R.delay,
+    '| Elapsed: ' + (dt_end - dt_start) + ' ms');
 
   dt_start = dt_end;
 
@@ -70,8 +70,17 @@ global.delay = function (done_callback) {
 };
 
 
-/*!
- * Import project
+/*! Debug helper.
+*/
+
+if (R.debug) {
+  global.log = console.log;
+} else {
+  global.log = function () {};
+}
+
+
+/*! Import project
  */
 
 //global.chai.use(require('../..'));

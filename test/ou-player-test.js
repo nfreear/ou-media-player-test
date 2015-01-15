@@ -10,7 +10,7 @@
 describe("Test OU Media Player - embedded player", function () {
   this.timeout(R.timeout);
 
-  it("...Should return a 200 code, and contain HTML", function (done) {
+  it("#page: should contain html & return a 200 status", function (done) {
 
     page("/embed/pod/student-experiences/db6cc60d6b").end(function (err, res) {
       var doc = res && res.text;
@@ -40,17 +40,13 @@ describe("Test OU Media Player - embedded player", function () {
 
 
 describe("Test a restricted-access player", function () {
-
-return;
-
   this.timeout(R.timeout);
 
-  it("...", function (done) {
+  it("#page: should contain html, a link to log in & specific classes", function (done) {
 
 //http://embed.open.ac.uk/oembed?format=json&url=http%3A//podcast.open.ac.uk/pod/learn-about-fair-2009%23%210a49a38de2&theme=oup-light&callback=jsonp1420555891885
     page("/embed/pod/learn-about-fair-2009/0a49a38de2").end(function (err, res) {
       var doc = res && res.text;
-      //console.log("Restricted: " + doc);
 
       expect(err).to.be.null;
       expect(res).to.not.be.null;
@@ -58,7 +54,14 @@ return;
       res.should.have.a.status(200);
       res.should.be.html;
 
-      //doc.should.contain('...');
+      expect(doc).to.match(/^<!doctype/);
+      doc.should.not.contain('error-php');
+
+      doc.should.contain('access-intranet');
+      doc.should.contain('restrict-text');
+      doc.should.contain('https://msds.open.ac.uk/signon/');
+      doc.should.contain("'Learn About' New Technologies");
+
       delay(done);
     });  
   });
@@ -66,14 +69,14 @@ return;
 });
 
 
-describe("Test JSON, Javascript etc.", function () {
+describe("Test json, Javascript etc.", function () {
   this.timeout(R.timeout);
 
-  it("Version JSON", function (done) {
+  it("#page: should contain version.json", function (done) {
 
     page("/version.json").end(function (err, res) {
       var doc = res && res.text;
-      //console.log("version.JSON: " + doc);
+      log("version.JSON: " + doc);
 
       expect(err).to.be.null;
       expect(res).to.not.be.null;
@@ -89,11 +92,10 @@ describe("Test JSON, Javascript etc.", function () {
   });
 
 
-  it("jQuery", function (done) {
+  it("#page: should contain jquery.js >= 1.9.x", function (done) {
 
     page("/engines/mediaelement/build/jquery.js").end(function (err, res) {
       var doc = res && res.text;
-      //console.log("version.JSON: " + doc);
 
       expect(err).to.be.null;
       expect(res).to.not.be.null;
@@ -110,13 +112,12 @@ describe("Test JSON, Javascript etc.", function () {
   });
 
 
-  it("oEmbed JSON response.", function (done) {
+  it("#page: should contain a valid oembed json-p response", function (done) {
 
     page("/oembed?format=json&callback=CB&url=" + R.podcast +
       "/pod/student-experiences/db6cc60d6b").end(function (err, res) {
       var doc = res && res.text;
-      //console.log(res.path);
-      //console.log("oEmbed JSON: " + doc);
+      //log("oEmbed JSON: " + doc);
 
       expect(err).to.be.null;
       expect(res).to.not.be.null;
