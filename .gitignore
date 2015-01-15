@@ -33,7 +33,9 @@ node_modules
 .DS_Store
 *copy
 *.diff
-/_dev
+/_dev*
+/_out*
 
+.htaccess
 
 #End.

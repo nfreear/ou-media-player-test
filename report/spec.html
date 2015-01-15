@@ -1,0 +1,106 @@
+<!doctype html><meta charset="utf-8" /><title>*Test report</title>
+
+<style>
+body { background: #fdfdfd; color: #222; font: 1em sans-serif; margin: 0 2em; }
+pre { font-size: 1.1em; }
+
+.tick, .passing { color: green; }
+.er, .ex, .failing { color: red; }
+.trace, .debug { color: #666; }
+.passing { margin-top: 1em; }
+.failing { margin-bottom: 1em; }
+
+.loading { text-align: center; font-size: 3em; color: orange; white-space: normal; }
+</style>
+
+<h1>Test Report</h1>
+
+<p id="test-date">Test date: <span></span></p>
+<p id="test-url"></p>
+
+<p id="reports">Raw reports:
+  <a href="../_out/report-spec.txt">text (spec)</a> |
+  <a href="../_out/report.json">JSON</a>
+
+<pre id="report-spec"><div class="loading">Loading...</div></pre>
+
+<div id="report-json"></div>
+
+
+<script src="//cdn.jsdelivr.net/superagent/0.18.0/superagent.min.js"></script>
+<script src="//cdn.enderjs.com/jeesh.min.js"></script>
+<script>
+$(document).ready(function () {
+
+  var spec_file = "../_out/report-spec.txt"
+    , json_file = "../_out/report.json"
+    , $ = window.$
+    , get = window.superagent.get
+    , $spec = $("#report-spec")
+    //, $json = $("#report-json")
+    , $date = $("#test-date span")
+    , $url  = $("#test-url");
+
+  //console.log("Hello", superagent, $report);
+
+  get(spec_file, function (resp) {
+    var lines = resp.text && resp.text.split(/\n/)
+      , line, j = 0, html = [], cls
+      , m_passfail, m_ref
+      , refs = [];
+
+    //console.log(resp);
+    //console.log(lines);
+
+    for (j = 0; j < lines.length; j++) {
+      line = lines[j];
+      cls = 'line ';
+      m_passfail = line.match(/\d (passing|failing)/);
+      m_ref = line.match(/\d\) /);
+
+      if (line.match(/✓/)) {
+        cls += 'tick';
+      }
+      else if (m_passfail) {
+        cls += m_passfail[1];
+      }
+      else if (line.match(/at .+\.js:\d+\:\d+\)?/)) {
+        cls += 'trace';
+      }
+      else if (line.match(/> \w/)) {
+        cls += 'debug';
+      }
+      else if (m_ref) {
+        cls += 'er';
+      }
+      else if (line.match(/Uncaught .+Error/)) {
+        cls += 'ex';
+      }
+      html.push('<div id="line-'+ j +'" class="'+ cls +'">'+ line +'</div>');
+    }
+
+    //console.log(html);
+
+    $spec.html(html.join(''));
+
+    $date.html(resp.headers['last-modified']);
+  });
+
+  get(json_file, function (resp) {
+    if (200 == resp.status) {
+      console.log("Test report (JSON):", JSON.parse(resp.text));
+    }
+    $date.html(resp.headers['last-modified']);
+    console.log(resp);
+  });
+
+});
+</script>
+
+
+<!--<script>
+function __report(data) {
+  console.log(data);
+}
+</script>
+<script src="report.json?callback=__report"></script>-->

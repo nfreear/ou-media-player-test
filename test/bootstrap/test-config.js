@@ -23,8 +23,9 @@ var R = module.exports = {
   external_url: "https://www.google.co.uk/",
   mailto: [ "nfreear@yahoo.co.uk" ],
   agent: '@nfreear/ou-media-player-test',
+  reporter: argv.reporter || 'spec',
   timeout: 9000,  // Milliseconds.
-  delay: delay ? delay[1] : 300  // Wait X milli-seconds between requests - play nice, like any robot should!
+  delay: delay ? delay[1] : 200  // Wait X milli-seconds between requests - play nice, like any robot should!
 };
 
 if (R.debug) {

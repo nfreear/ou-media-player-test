@@ -53,8 +53,10 @@ global.delay = function (done_callback) {
 
   count++;
 
-  console.log('    > Delay: ' + count + ' * ' + R.delay,
-    '| Elapsed: ' + (dt_end - dt_start) + ' ms');
+  if ('json' !== R.reporter) {
+    console.log('    > Delay: ' + count + ' * ' + R.delay,
+      '| Elapsed: ' + (dt_end - dt_start) + ' ms');
+  }
 
   dt_start = dt_end;
 
