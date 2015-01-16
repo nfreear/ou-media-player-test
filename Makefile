@@ -36,9 +36,9 @@ help:
 test: test-iet-embed-acct
 
 crontab: sanity-check
-	- OUMP_NP=1 OUMP_RT=spec make test-iet-embed-acct > $(OUT)report-spec.txt
-	- OUMP_NP=1 OUMP_RT=json make test-iet-embed-acct > $(OUT)report.json
-	#- OUMP_NP=1 OUMP_RT=doc  make test-iet-embed-acct > $(OUT)doc.html
+	- OUMP_RT=spec make test-iet-embed-acct > $(OUT)report-spec.txt
+	- OUMP_RT=json make test-iet-embed-acct > $(OUT)report.json
+	#- OUMP_RT=doc  make test-iet-embed-acct > $(OUT)doc.html
 
 test-api:
 	$(MOCHA)=http://iet-embed-acct.open.ac.uk test/*-api.js
