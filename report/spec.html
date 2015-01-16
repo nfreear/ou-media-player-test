@@ -2,7 +2,7 @@
 
 <style>
 body { background: #fdfdfd; color: #222; font: 1em sans-serif; margin: 0 2em; }
-pre { font-size: 1.1em; line-height: 1.6em; max-width: 300em; }
+pre { font-size: 1.1em; line-height: 1.7em; max-width: 300em; }
 
 .tick, .passing { color: green; }
 .er, .ex, .failing { color: red; }
@@ -17,7 +17,7 @@ pre { font-size: 1.1em; line-height: 1.6em; max-width: 300em; }
 <h1>Test Report</h1>
 
 <p id="test-date">Test date: <span></span></p>
-<p id="test-url">URL: <a></a></p>
+<p id="test-url">Test URL: <a></a></p>
 
 <p id="reports">Raw reports:
   <a href="../_out/report-spec.txt">text (spec)</a> |
@@ -43,22 +43,18 @@ pre { font-size: 1.1em; line-height: 1.6em; max-width: 300em; }
     , $date = Q("#test-date span")
     , $url  = Q("#test-url a");
 
-  //console.log("Hello", superagent, $report);
-
   get(spec_file, function (resp) {
     var lines = resp.text && resp.text.split(/\n/)
       , line, j = 0, html = [], cls
-      , m_passfail, m_ref
+      , m_passfail, m_ref, m_url, url
       , refs = [];
-
-    //console.log(resp);
-    //console.log(lines);
 
     for (j = 0; j < lines.length; j++) {
       line = lines[j];
       cls = 'line ';
       m_passfail = line.match(/\d (passing|failing)/);
       m_ref = line.match(/\d\) /);
+      m_url = line.match(/> Base: (.+)/);
 
       if (line.match(/✓/)) {
         cls += 'tick';
@@ -78,13 +74,15 @@ pre { font-size: 1.1em; line-height: 1.6em; max-width: 300em; }
       else if (line.match(/Uncaught .+Error/)) {
         cls += 'ex';
       }
+      if (m_url) {
+        url = m_url[1];
+      }
       html.push('<div id="line-'+ j +'" class="'+ cls +'">'+ line +'</div>');
     }
 
-    //console.log(html);
-
     $spec.innerHTML = html.join('');
     $date.innerHTML = resp.headers['last-modified'];
+    $url.innerHTML = $url.href = url;
   });
 
   get(json_file, function (resp) {
@@ -98,10 +96,3 @@ pre { font-size: 1.1em; line-height: 1.6em; max-width: 300em; }
 });
 </script>
 
-
-<!--<script>
-function __report(data) {
-  console.log(data);
-}
-</script>
-<script src="report.json?callback=__report"></script>-->

@@ -23,7 +23,7 @@ if ($report && isset( $report->stats->passes )) {
   $n_pass = $report->stats->passes;
 
   if ($n_fail) {
-    header( 'HTTP/1.1 500 Internal Server Error' );
+    header( 'HTTP/1.1 503 Service Unavailable' );
   }
   header( 'X-test-failures: '. $n_fail );
   header( 'X-test-passes: '. $n_pass );
@@ -32,16 +32,20 @@ if ($report && isset( $report->stats->passes )) {
   header( 'X-test-json-file: ' . $report_file );
 }
 else {
-  header( 'HTTP/1.1 503 Service Unavailable');
+  header( 'HTTP/1.1 500 Internal Server Error' );
 }
 
 
-if (isset($_GET[ 'format' ]) && 'json' == $_GET[ 'format' ]) {
+if ('json' == _get( 'format' ) && $report_json) {
   @header( 'Content-Type: text/json; charset=utf-8' );
   echo $report_json;
 }
 else {
   require_once $report_html;
+}
+
+function _get($key, $default = null) {
+  return isset($_GET[ $key ]) ? $_GET[ $key ] : $default;
 }
 
 #End.

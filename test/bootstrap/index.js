@@ -79,33 +79,15 @@ if (R.debug) {
   global.log = function () {};
 }
 
+if (R.is_json) {
+  console.warn('>> Base: ' + R.base);
+} else {
+  console.log('>> Base: ' + R.base);
+}
+
 
 /*! Import project
  */
 
 //global.chai.use(require('../..'));
 
-
-
-/*
-global.NOT_WORKING_my_it = function (text, callback) {
-  count++;
-
-  console.log("'it' count", count, R.interval, text);
-
-  temporal.delay(count * R.interval, function () {
-    it(text, callback);
-  });
-};
-
-chai.simple_get = function (path, callback) {
-  var that = this;
-  it("...", function (done) {
-    that.get(path).end(function (err, res) {
-      var page = res.text;
-
-      callback(err, res, page, done);
-    });
-  });
-  return that;
-}*/

@@ -24,10 +24,11 @@ var R = module.exports = {
   mailto: [ "nfreear@yahoo.co.uk" ],
   agent: '@nfreear/ou-media-player-test',
   reporter: argv.reporter || 'spec',
+  is_json: 'json' === argv.reporter,
   timeout: 9000,  // Milliseconds.
   delay: delay ? delay[1] : 150  // Wait X milli-seconds between requests - play nice, like any robot should!
 };
-R.debug = R.debug && "json" !== R.reporter;
+R.debug = R.debug && !R.is_json;
 
 if (R.debug) {
   console.log("Argv: ", argv);
