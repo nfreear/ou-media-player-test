@@ -7,10 +7,10 @@
 //require('./bootstrap');
 
 
-describe("Test OU Media Player - embedded player", function () {
+describe("Test OU Media Player - embedded podcast players", function () {
   this.timeout(R.timeout);
 
-  it("#page: should contain html & return a 200 status", function (done) {
+  it("#page: should contain html, specific classes (podcast video) & return a 200 status", function (done) {
 
     page("/embed/pod/student-experiences/db6cc60d6b").end(function (err, res) {
       var doc = res && res.text;
@@ -21,10 +21,10 @@ describe("Test OU Media Player - embedded player", function () {
       res.should.have.a.status(200);
       res.should.be.html;
 
-      //expect(doc).to.match(/^<!doctype/);
-      //doc.should.not.contain("error-php");
+      expect(doc).to.match(/^<!doctype/);
+      doc.should.not.contain("error-php");
 
-      doc.should.contain("<!doctype");
+      //doc.should.contain("<!doctype");
       doc.should.contain(
         "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js");
 
@@ -36,112 +36,31 @@ describe("Test OU Media Player - embedded player", function () {
       delay(done);
     });
   });
-});
 
 
-describe("Test a restricted-access player", function () {
-  this.timeout(R.timeout);
+  it("#page: should contain html, specific classes (podcast audio) & return a 200 status", function (done) {
 
-  it("#page: should contain html, a link to log in & specific classes", function (done) {
-
-//http://embed.open.ac.uk/oembed?format=json&url=http%3A//podcast.open.ac.uk/pod/learn-about-fair-2009%23%210a49a38de2&theme=oup-light&callback=jsonp1420555891885
-    page("/embed/pod/learn-about-fair-2009/0a49a38de2").end(function (err, res) {
+    page("/embed/pod/l314-spanish/fe481a4d1d").end(function (err, res) {
       var doc = res && res.text;
 
       expect(err).to.be.null;
       expect(res).to.not.be.null;
-
       res.should.have.a.status(200);
       res.should.be.html;
 
-      expect(doc).to.match(/^<!doctype/);
-      doc.should.not.contain('error-php');
+      doc.should.contain("<!doctype");
+      doc.should.contain(
+        "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js");
 
-      doc.should.contain('access-intranet');
-      doc.should.contain('restrict-text');
-      doc.should.contain('https://msds.open.ac.uk/signon/');
-      doc.should.contain("'Learn About' New Technologies");
-
-      delay(done);
-    });  
-  });
-
-});
-
-
-describe("Test json, Javascript etc.", function () {
-  this.timeout(R.timeout);
-
-  it("#page: should contain version.json", function (done) {
-
-    page("/version.json").end(function (err, res) {
-      var doc = res && res.text;
-      log("version.JSON: " + doc);
-
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
-
-      res.should.have.a.status(200);
-      res.should.be.json;
-
-      doc.should.match(/^\{\"/);
-      doc.should.contain('"commit":');
-
-      delay(done);
-    });
-  });
-
-
-  it("#page: should contain jquery.js >= 1.9.x", function (done) {
-
-    page("/engines/mediaelement/build/jquery.js").end(function (err, res) {
-      var doc = res && res.text;
-
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
-
-      res.should.have.a.status(200);
-      //res.should.be.javascript;
-      res.headers["content-type"].should.contain("text/javascript");
-
-      doc.should.match(/^\/\*\!/);
-      doc.should.contain('core_version = "1.9.1",');
-
-      delay(done);
-    });
-  });
-
-
-  it("#page: should contain a valid oembed json-p response", function (done) {
-
-    page("/oembed?format=json&callback=CB&url=" + R.podcast +
-      "/pod/student-experiences/db6cc60d6b").end(function (err, res) {
-      var doc = res && res.text;
-      //log("oEmbed JSON: " + doc);
-
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
-
-      res.should.have.a.status(200);
-      //res.should.be.javascript;
-      //res.should.be.utf8;
-      res.headers["content-type"].should.contain("text/javascript");
-      expect(res).to.have.header('content-type', /text\/javascript/);
-      res.headers.should.not.have.property("x-powered-by");
-      /*res
-        .headers.should.not.have.property("x-powered-by")
-        .or
-        .headers["x-powered-by"].should.not.contain("PHP/");
-      */
-      res.headers["server"].should.not.match(/\d\.\d/);  //(/Apache/i)
-
-      doc.should.match(/^CB\(\{"/);
-      doc.should.contain('"version":"1.0"');
-      doc.should.contain('"html":"<iframe ');
+      doc.should.contain/*.htmlClass*/("mtype-audio");
+      doc.should.contain/*.htmlClass*/("ctx-Podcast_player");
+      doc.should.contain/*.htmlElement*/("<audio");
+      doc.should.contain("mejs.MediaElementPlayer");
 
       delay(done);
     });
   });
 
 });
+
 

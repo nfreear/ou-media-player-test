@@ -7,7 +7,7 @@
 'use strict';
 
 
-describe("Test OU Podcasts ...", function () {
+describe("Test OU Podcasts - RSS feed API, etc.", function () {
   this.timeout(R.timeout);
 
   it("#page: should contain an rss feed & return a 200 status", function (done) {

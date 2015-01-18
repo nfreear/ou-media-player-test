@@ -2,10 +2,41 @@
   OU Media Player - API tests..
 */
 
-describe("Test OU Media Player API", function () {
+describe("Test OU Media Player - API, generated Javascript etc.", function () {
   this.timeout(R.timeout);
 
-  it("#page: should contain valid timed text / webvtt", function (done) {
+  it("#page: should contain a valid oembed json-p response (via php)", function (done) {
+
+    page("/oembed?format=json&callback=CB&url=" + R.podcast +
+      "/pod/student-experiences/db6cc60d6b").end(function (err, res) {
+      var doc = res && res.text;
+      //log("oEmbed JSON: " + doc);
+
+      expect(err).to.be.null;
+      expect(res).to.not.be.null;
+
+      res.should.have.a.status(200);
+      //res.should.be.javascript;
+      //res.should.be.utf8;
+      res.headers["content-type"].should.contain("text/javascript");
+      expect(res).to.have.header('content-type', /text\/javascript/);
+      res.headers.should.not.have.property("x-powered-by");
+      /*res
+        .headers.should.not.have.property("x-powered-by")
+        .or
+        .headers["x-powered-by"].should.not.contain("PHP/");
+      */
+      res.headers["server"].should.not.match(/\d\.\d/);  //(/Apache/i)
+
+      doc.should.match(/^CB\(\{"/);
+      doc.should.contain('"version":"1.0"');
+      doc.should.contain('"html":"<iframe ');
+
+      delay(done);
+    });
+  });
+
+  it("#page: should contain valid timed text / webvtt (via php)", function (done) {
 
     page("/timedtext/webvtt?url=" + R.podcast +
         "/feeds/student-experiences/closed-captions/" +
