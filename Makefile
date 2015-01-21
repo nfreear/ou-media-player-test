@@ -28,9 +28,9 @@ OUT = _out/
 
 
 help:
-	# Test OU Media Player. Available targets:
+	# Remote tests for OU Media Player. Available targets:
 	#
-	#	test, test-proxy, test-debug, test-it-player-acct, test-it-player-live
+	#	test, test-proxy, test-debug, test-it-player-acct, test-it-player-live,  mocha-help, crontab
 	@echo
 
 test: test-iet-embed-acct
@@ -38,7 +38,9 @@ test: test-iet-embed-acct
 crontab: sanity-check
 	- OUMP_RT=spec make test-iet-embed-acct > $(OUT)report-spec.txt
 	- OUMP_RT=json make test-iet-embed-acct > $(OUT)report.json
-	#- OUMP_RT=doc  make test-iet-embed-acct > $(OUT)doc.html
+	rm -f $(OUT)doc.html
+	cp report/doc-tpl.html $(OUT)doc.html
+	- OUMP_RT=doc  make test-iet-embed-acct >> $(OUT)doc.html
 
 test-api:
 	$(MOCHA)=http://iet-embed-acct.open.ac.uk test/*-api.js
@@ -78,6 +80,6 @@ sanity-check:
 	@wget -v -P $(OUT) http://iet-embed-acct.open.ac.uk/version.json
 	#more $(OUT)version.json
 
-.PHONY: help test test-it-player-acct test-it-player-live test-iet-embed-acct test-iet-embed-live mocha-help
+.PHONY: help test test-it-player-acct test-it-player-live test-iet-embed-acct test-iet-embed-live mocha-help crontab
 
 #End.
