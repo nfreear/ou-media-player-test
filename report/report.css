@@ -1,0 +1,21 @@
+/*!
+  Stylesheet for test reports - "spec" and "doc" format etc.
+*/
+
+body { background: #fdfdfd; color: #222; font: 1em sans-serif; margin: 0 2em; }
+pre { font-size: 1.1em; line-height: 1.7em; max-width: 300em; margin: 2em 0; }
+h1  { font-weight: normal; }
+
+.tick, .passing { color: green; }
+.er, .ex, .failing { color: red; }
+.trace, .debug { color: #666; }
+.passing, .failing { font-size: 1.5em; }
+.passing { margin-top: 1em; }
+.failing { margin-bottom: 1em; }
+.tick, .er { text-indent: 2em; }
+.line { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.make { display: none; }
+
+.loading { display: block; text-align: center; font-size: 3em; color: orange; white-space: normal; }
+a.github img { position: absolute; top: 0; right: 0; border: 0; }
+
