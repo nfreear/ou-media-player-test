@@ -11,3 +11,11 @@ script:
   #- sleep 1
   - npm test
   #- OUMP_NP=1 make test-one
+
+notifications:
+  webhooks:
+    - http://freear.org.uk/content/travis-teamwork-hook?mail=1
+    #- http://iet-embed-acct.open.ac.uk/dev/travis-teamwork-hook/
+
+
+#End.
