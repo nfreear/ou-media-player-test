@@ -1,7 +1,7 @@
 /*!
-  Spec Parser - parse the text "spec" format output by Mocha et al.
+  Spec Parser - parse the text "spec" format produced by Mocha et al.
 
-  © 2015 Nick Freear. (15 January 2015..)
+  Copyright (c) 2015 Nick Freear. (15 January 2015..)
 */ 
 
 (function (W) {
@@ -10,15 +10,15 @@
 
 //http://stackoverflow.com/questions/1979884/how-to-use-javascript-regex-over-multiple-lines
   P.removePreTest = function (str) {
-    return str.replace(/[^]+\$ npm test/m, '')
+    return str.replace(/[^]+\$ npm test/m, '');
   };
 
   P.removePostTest = function (str) {
-    return str.replace(/travis_time:end[^]+/m, '')
+    return str.replace(/travis_time:end[^]+/m, '');
   };
 
   P.removeColor = function (str) {
-    return str.replace(/\[(0m|2K|0G|32m|90m|31m|92m)/gm, '')
+    return str.replace(/\[(0m|2K|0G|32m|90m|31m|92m)/gm, '');
   };
 
 
@@ -35,7 +35,7 @@
       m_ref = line.match(/\d\) /);
       m_url = line.match(/> Base: ([\w:\.\/\-_]+)/);
 
-      if (line.match(/✓/)) {
+      if (line.match(/\u2713/)) {
         cls += 'tick';
       }
       else if (m_passfail) {

@@ -55,11 +55,11 @@ function _test_spec_headers( $stats, $report_file ) {
   if ($stats->failures) {
     header( 'HTTP/1.1 503 Service Unavailable' );
   }
-  header( 'X-test-passes: '. $stats->passes );
-  header( 'X-test-failures: '. $stats->failures );
-  header( 'X-test-end: '   . $stats->end );
+  header( 'X-test-passes: '  . _int( $stats->passes ));
+  header( 'X-test-failures: '. _int( $stats->failures ));
+  header( 'X-test-end: '  . _str( $stats->end ));  //Date.
   header( 'X-test-stats: '. json_encode( $stats ));
-  header( 'X-test-file: ' . $report_file );
+  header( 'X-test-file: ' . _str( $report_file ));
 
   header( 'Access-Control-Allow-Origin: *' );
 }
@@ -69,7 +69,7 @@ _parse_test_spec( $report_file );
 
 
 if ('json' == _get( 'format' ) && isset( $report_json )) {
-  @header( 'Content-Type: text/json; charset=utf-8' );
+  header( 'Content-Type: text/json; charset=utf-8' );
   echo $report_json;
 }
 else {
@@ -77,8 +77,16 @@ else {
 }
 
 
-function _get($key, $default = null) {
-  return isset($_GET[ $key ]) ? $_GET[ $key ] : $default;
+
+function _get( $key, $default = null ) {
+  $value = filter_input( INPUT_GET, $key, FILTER_SANITIZE_STRING );
+  return $value ? $value : $default;
+}
+function _int( $value ) {
+  return filter_var( $value, FILTER_VALIDATE_INT );
+}
+function _str( $value ) {
+  return filter_var( $value, FILTER_SANITIZE_STRING );
 }
 
 #End.

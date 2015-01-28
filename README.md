@@ -1,6 +1,6 @@
 # ou-media-player-test
 
-[![Build status][travis-img]][travis]
+[![Build status][travis-img]][travis]  [![Code Climate][climate-img]][climate]
 
 Remote unit tests for OU Media Player, at The Open University.
 
@@ -45,3 +45,6 @@ If you're behind a proxy then you may need to add this to your `~/.gitconfig` fi
 [chai-http]: https://github.com/chaijs/chai-http
 [travis]:  https://travis-ci.org/nfreear/ou-media-player-test
 [travis-img]: https://api.travis-ci.org/nfreear/ou-media-player-test.svg?branch=master "Build status"
+[climate]: https://codeclimate.com/github/nfreear/ou-media-player-test
+[climate-img]: https://codeclimate.com/github/nfreear/ou-media-player-test/badges/gpa.svg
+
