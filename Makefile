@@ -24,6 +24,9 @@ MOCHA = NODE_ENV=test ./node_modules/.bin/mocha \
     --globals $(NOPROXY)base
 TESTS = test/ou-p*.js
 OUT = _out/
+BIN = _bin/
+
+JAR = selenium-server-standalone-2.44.0.jar
 
 
 
@@ -53,6 +56,19 @@ test-proxy:
 
 test-debug:
 	$(MOCHA)=http://iet-embed-acct.open.ac.uk,debug $(TESTS)
+
+
+selenium-install:
+	wget -P $(BIN) http://selenium-release.storage.googleapis.com/2.44/$(JAR)
+	wget -P $(BIN) http://chromedriver.storage.googleapis.com/2.14/chromedriver_mac32.zip
+	cd $(BIN); unzip -o chromedriver_mac32.zip
+	# TODO: fix 'node_modules/browserevent/lib/browserevent.js' : line 35 - ''./extensions/chrome.crx'
+
+selenium-server:
+	java -Dwebdriver.chrome.driver=`pwd`/$(BIN)chromedriver -jar $(BIN)$(JAR)
+
+selenium-test:
+	$(MOCHA)=http://iet-embed-acct.open.ac.uk  test/selenium/*.js
 
 
 # IT-EUD hosting.

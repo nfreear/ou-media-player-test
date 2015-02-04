@@ -12,6 +12,9 @@
     "mocha": "*",
     "chai": "*",
     "chai-http": "git+https://github.com/chaijs/chai-http#master"
+    ,
+    "webdriverio": "*",
+    "browserevent": "*"
   },
   "//": {
     "chai-http": "*"
