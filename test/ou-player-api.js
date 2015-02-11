@@ -9,7 +9,10 @@ describe("Test OU Media Player - API, generated Javascript etc.", function () {
 
     page("/oembed?format=json&callback=CB&url=" + R.podcast +
       "/pod/student-experiences/db6cc60d6b").end(function (err, res) {
-      var doc = res && res.text;
+      var doc = res && res.text
+        // Parse JSON [Bug: #7]
+        , json = doc && doc.replace(/^CB\(/, '').replace(/\)$/, '')
+        , obj = json && JSON.parse(json);
       //log("oEmbed JSON: " + doc);
 
       expect(err).to.be.null;
@@ -31,6 +34,10 @@ describe("Test OU Media Player - API, generated Javascript etc.", function () {
       doc.should.match(/^CB\(\{"/);
       doc.should.contain('"version":"1.0"');
       doc.should.contain('"html":"<iframe ');
+
+      expect(obj.version).to.equal("1.0");
+      expect(obj.type).to.equal("video");
+      expect(obj.html).to.contain("<iframe");
 
       delay(done);
     });

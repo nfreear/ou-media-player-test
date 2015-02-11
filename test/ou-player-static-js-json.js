@@ -5,8 +5,10 @@ describe("Test OU Media Player - static json & javascript etc.", function () {
   it("#page: should contain version.json", function (done) {
 
     page("/version.json").end(function (err, res) {
-      var doc = res && res.text;
-      log("version.JSON: " + doc);
+      var doc = res && res.text
+        // Parse JSON [Bug: #7]
+        , obj = doc && JSON.parse(doc);
+      log("version.JSON: " + obj);
 
       expect(err).to.be.null;
       expect(res).to.not.be.null;
@@ -16,6 +18,9 @@ describe("Test OU Media Player - static json & javascript etc.", function () {
 
       doc.should.match(/^\{\"/);
       doc.should.contain('"commit":');
+
+      expect(obj).to.have.property("describe");
+      expect(obj.describe).to.match(/^v\d\.\d+\-\d+\-g\w{7}$/);
 
       delay(done);
     });

@@ -13,10 +13,10 @@ describe("Test OU Podcasts - RSS feed API, etc.", function () {
   it("#page: should contain an rss feed & return a 200 status", function (done) {
 
     request(R.podcast + "/feeds/student-experiences/player.xml",
-        function (error, res, doc) {
+        function (err, res, doc) {
       log('    > Path: ' + res.request.href); //res.req.path, res);
 
-      expect(error).to.be.null;
+      expect(err).to.be.null;
       res.statusCode.should.equal(200);
       //res.should.be.xml;
       res.headers["content-type"].should.contain("application/xml");
@@ -36,6 +36,24 @@ describe("Test OU Podcasts - RSS feed API, etc.", function () {
 
       delay(done);
     });
+  });
+
+
+  it("#page: should be a valid rss feed (parser)", function (done) {
+
+    // Parse RSS feed [Bug: #7]
+    rss_parser(R.podcast + "/feeds/student-experiences/player.xml", function (err, rss) {
+      var meta = rss[0].meta;
+      //console.log("RSS: ", rss);
+
+      expect(err).to.be.null;
+      //rss.statusCode.should.equal(200);
+      expect(meta.title).to.contain("The Student Experience");
+      expect(rss[0].title).to.contain("Student views of the OU");
+
+      delay(done);
+    });
+
   });
 
 });

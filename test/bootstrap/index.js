@@ -5,6 +5,7 @@
 var R = global.R = require('./test-config');
 
 global.request = require('request');
+global.rss_parser = require("parse-rss")
 
 /*! Attach ES6 Shim.
  */

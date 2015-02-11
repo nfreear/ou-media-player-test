@@ -26,7 +26,7 @@ TESTS = test/ou-p*.js
 OUT = _out/
 BIN = _bin/
 
-JAR = selenium-server-standalone-2.44.0.jar
+JAR = selenium-server-standalone-2.43.1.jar
 
 
 
@@ -51,6 +51,9 @@ test-api:
 test-one:
 	$(MOCHA)=http://iet-embed-acct.open.ac.uk --grep=embed test/ou-player-test.js
 
+test-podcast:
+	$(MOCHA)=http://iet-embed-acct.open.ac.uk,debug  test/*-podcast-*.js
+
 test-proxy:
 	$(MOCHA)=http://iet-embed-acct.open.ac.uk  test/*-proxy-*.js
 
@@ -59,7 +62,7 @@ test-debug:
 
 
 selenium-install:
-	wget -P $(BIN) http://selenium-release.storage.googleapis.com/2.44/$(JAR)
+	wget -P $(BIN) http://selenium-release.storage.googleapis.com/2.43/$(JAR)
 	wget -P $(BIN) http://chromedriver.storage.googleapis.com/2.14/chromedriver_mac32.zip
 	cd $(BIN); unzip -o chromedriver_mac32.zip
 	# TODO: fix 'node_modules/browserevent/lib/browserevent.js' : line 35 - ''./extensions/chrome.crx'

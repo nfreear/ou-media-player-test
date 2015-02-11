@@ -25,17 +25,22 @@ describe('My webdriverio tests', function () {
     client
       .url(R.base + "/embed/pod/student-experiences/db6cc60d6b")
       .getTitle(function (err, title) {
-        //assert.equal(undefined, err);
         expect(err).to.be.undefined;
         //assert.strictEqual(title,'GitHub · Build software better, together.');
         expect(title).to.equal('The Student Experience: Student views of the OU | OU player');
       })
       .waitForExist(play_btn, 2000, function () {
 
-        console.log('> Element exists:', play_btn);
+        console.log('> Element exists (play-pause button):', play_btn);
 
         client
-          .addEventListener('play', 'video#player1', function (ev) {
+          .element('video#player1', function (err, res) {
+            expect(err).to.be.null;  //.undefined;
+            expect(res.state).to.equal('success');
+
+            console.log('> Element exists (<video>):', res);
+          })
+          .addEventListener('play', '#player1', function (ev) {
             console.log('> Event:', ev.type);
           })
           .addEventListener('pause', 'video#player1', function (ev) {
