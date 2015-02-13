@@ -33,8 +33,12 @@ JAR = selenium-server-standalone-2.43.1.jar
 help:
 	# Remote tests for OU Media Player. Available targets:
 	#
-	#	test, test-proxy, test-debug, test-it-player-acct, test-it-player-live,  mocha-help, crontab
+	#	update, test, test-proxy, test-debug, test-it-player-acct, test-it-player-live, mocha-help, crontab
 	@echo
+
+update:
+	git pull
+	npm install
 
 test: test-iet-embed-acct
 
