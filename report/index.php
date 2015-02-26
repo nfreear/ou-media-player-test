@@ -7,8 +7,8 @@
 */
 
 #$report_file = '../_out/report.json';
-define( 'REPORT_FILE', '../_out/report-spec.txt' );
-define( 'REPORT_HTML', 'spec.html' );
+define( 'REPORT_FILE', __DIR__ . '/../_out/report-spec.txt' );
+define( 'REPORT_HTML', __DIR__ . '/spec.html' );
 
 
 function _parse_test_spec( $report_file ) {

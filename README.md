@@ -3,7 +3,7 @@
 [![Build status][travis-img]][travis]  [![Code Climate][climate-img]][climate]
 [![Issues][issues-img]][issues] ![][reposs]
 
-Remote unit tests for OU Media Player, at The Open University.
+Remote integration tests for OU Media Player, by IET at The Open University.
 
 * <https://mediaplayer.open.ac.uk>
 
