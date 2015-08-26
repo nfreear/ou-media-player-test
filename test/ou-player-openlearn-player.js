@@ -28,7 +28,7 @@ describe("Test OU Media Player - OpenLearn legacy media player", function () {
         "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js");
 
       doc.should.contain/*.htmlClass*/("mtype-video");
-      doc.should.contain/*.htmlClass*/("ctx-Openlearn_player");
+      doc.should.contain/*.htmlClass*/("ctx-Openlearn_Player");
       doc.should.contain/*.htmlElement*/("<video");
       doc.should.contain("mejs.MediaElementPlayer");
 

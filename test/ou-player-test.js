@@ -29,7 +29,7 @@ describe("Test OU Media Player - embedded podcast players", function () {
         "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js");
 
       doc.should.contain/*.htmlClass*/("mtype-video");
-      doc.should.contain/*.htmlClass*/("ctx-Podcast_player");
+      doc.should.contain/*.htmlClass*/("ctx-Podcast_Player");
       doc.should.contain/*.htmlElement*/("<video");
       doc.should.contain("mejs.MediaElementPlayer");
 
@@ -53,7 +53,7 @@ describe("Test OU Media Player - embedded podcast players", function () {
         "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js");
 
       doc.should.contain/*.htmlClass*/("mtype-audio");
-      doc.should.contain/*.htmlClass*/("ctx-Podcast_player");
+      doc.should.contain/*.htmlClass*/("ctx-Podcast_Player");
       doc.should.contain/*.htmlElement*/("<audio");
       doc.should.contain("mejs.MediaElementPlayer");
 
@@ -62,5 +62,3 @@ describe("Test OU Media Player - embedded podcast players", function () {
   });
 
 });
-
-

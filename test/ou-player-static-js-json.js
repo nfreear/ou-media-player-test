@@ -20,7 +20,8 @@ describe("Test OU Media Player - static json & javascript etc.", function () {
       doc.should.contain('"commit":');
 
       expect(obj).to.have.property("describe");
-      expect(obj.describe).to.match(/^v\d\.\d+\-\d+\-g\w{7}$/);
+      // Semantic Versioning, http://semver.org/#!spec-section-9
+      expect(obj.describe).to.match(/^v?\d\.\d+(\-alpha|\-beta|\-rc)?\-\d+\-g\w{7}$/);
 
       delay(done);
     });
