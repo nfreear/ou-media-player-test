@@ -28,7 +28,7 @@ class TestReportParser {
   public function has_passed()
   {
     $stats = $this->stats;
-    return $stats && $stats->passes && !$stats-failures;
+    return $stats && $stats->passes && ! $stats->failures;
   }
 
   public function parse_test_spec( $report_file ) {
