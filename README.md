@@ -1,11 +1,12 @@
-# ou-media-player-test
 
 [![Build status][travis-img]][travis]  [![Code Climate][climate-img]][climate]
-[![Issues][issues-img]][issues] ![][reposs]
+[![Issues][issues-img]][issues] ![][reposs]  [![Remote integration tests: status][test-img]][test]
 
-Remote integration tests for OU Media Player, by IET at The Open University.
+# ou-media-player-test
 
-* <https://mediaplayer.open.ac.uk>
+Remote integration tests for [Open Media Player][omp], by IET at The Open University.
+
+* <http://embed.open.ac.uk>
 
 Note: this repository is an interim solution. Naturally, we want the tests in the same code-base as the Player.
 
@@ -36,8 +37,28 @@ If you're behind a proxy then you may need to add this to your `~/.gitconfig` fi
 ```
 
 
+## Cron
+
+At a terminal, type `crontab -e`:
+
+```sh
+# min hour dom mo dow  command
+
+5 7,16 * * *  cd ... /dev_projects/ou-media-player-test ; make crontab >> $HOME/crontab.log 2>&1
+
+#Was:  5 7,10,16 * * *  cd ...
+
+#FAIL: 5 7,16 * * *  make -f ... /dev_projects/ou-media-player-test/Makefile crontab >> $HOME/crontab.log 2>&1
+```
+
+
 ---
-© 2015 The Open University. [Institute of Educational Technology][iet].
+© 2015 The Open University. ([Institute of Educational Technology][iet])
+
+[omp]: http://iet-ou.github.io/open-media-player/
+[omp-wiki]: https://github.com/IET-OU/open-media-player/wiki
+[test]: http://iet-embed-acct.open.ac.uk/dev/ou-media-player-test/report/ "Remote integration tests: status"
+[test-img]: http://iet-embed-acct.open.ac.uk/dev/ou-media-player-test/report/svg/
 
 [iet]:     http://iet.open.ac.uk/
 [node.js]: http://nodejs.org/
