@@ -14,14 +14,14 @@ require_once '../TestReportParser.php';
 
 $parser = new \Nfreear\Open_Media_Player_Test\TestReportParser( $is_html = false );
 
-$stats = $parser->parse_test_spec( REPORT_FILE );
+$parser->parse_test_spec( REPORT_FILE );
 
 
 header( 'Content-Type: image/svg+xml; charset=utf-8' );
 //Content-Encoding:gzip
 
 
-if ($stats->failures):
+if (! $parser->has_passed()):
     ?>
 <svg xmlns="http://www.w3.org/2000/svg" width="115" height="20">
 <linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient>

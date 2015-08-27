@@ -18,12 +18,18 @@ define( 'REPORT_HTML', __DIR__ . '/spec.html' );
 class TestReportParser {
 
   protected $is_html = true;
+  protected $stats;
 
   public function __construct($is_html = true)
   {
     $this->is_html = $is_html;
   }
 
+  public function has_passed()
+  {
+    $stats = $this->stats;
+    return $stats && $stats->passes && !$stats-failures;
+  }
 
   public function parse_test_spec( $report_file ) {
     $stats = $this->init_stats( $report_file );
@@ -48,6 +54,7 @@ class TestReportParser {
 
       $this->test_spec_headers( $stats );
     }
+    $this->stats = $stats;
     return $stats;
   }
 
