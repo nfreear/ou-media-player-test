@@ -1,6 +1,6 @@
 <?php
 /**
-* SVG badge.
+* SVG badge [Bug: #12]
 *
 * @author Nick Freear, 26 August 2015.
 * @copyright © 2015 The Open University.

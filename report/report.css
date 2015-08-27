@@ -13,9 +13,10 @@ h1  { font-weight: normal; }
 .passing { margin-top: 1em; }
 .failing { margin-bottom: 1em; }
 .tick, .er { text-indent: 2em; }
-.line { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.line, .line i { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.line i { font-style: normal; display: block; }
+.line .p2:before { content: " ... "; }  /* Ellipsis &hellip; \2026 */
 .make { display: none; }
 
 .loading { display: block; text-align: center; font-size: 3em; color: orange; white-space: normal; }
 a.github img { position: absolute; top: 0; right: 0; border: 0; }
-
