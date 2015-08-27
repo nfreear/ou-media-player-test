@@ -14,7 +14,7 @@ $parser = new \Nfreear\Open_Media_Player_Test\TestReportParser();
 $parser->parse_test_spec( REPORT_FILE );
 
 
-if ('json' == $this->get( 'format' ) && isset( $report_json )) {
+if ('json' == $parser->get( 'format' ) && isset( $report_json )) {
   header( 'Content-Type: text/json; charset=utf-8' );
   echo $report_json;
 }
