@@ -6,6 +6,9 @@ describe("Test OU Media Player - static json & javascript etc.", function () {
 
     page("/version.json").end(function (err, res) {
       var doc = res && res.text
+        // Semantic Versioning, http://semver.org/#!spec-section-9 [Bug: #11]
+        , OLD_ver_regex = /^v?\d\.\d+(\-alpha|\-beta|\-rc)?\-\d+\-g\w{7}$/
+        , sem_ver_regex = /^v?\d+\.\d+(\-(alpha|beta|rc)(\.\d)?)?(\-\d+\-g\w{7})?$/
         // Parse JSON [Bug: #7]
         , obj = doc && JSON.parse(doc);
       log("version.JSON: " + obj);
@@ -20,8 +23,11 @@ describe("Test OU Media Player - static json & javascript etc.", function () {
       doc.should.contain('"commit":');
 
       expect(obj).to.have.property("describe");
-      // Semantic Versioning, http://semver.org/#!spec-section-9 [Bug: #11]
-      expect(obj.describe).to.match(/^v?\d\.\d+(\-alpha|\-beta|\-rc)?\-\d+\-g\w{7}$/);
+      expect(obj.describe).to.match(sem_ver_regex);
+
+      expect("v1.1").to.match(sem_ver_regex);
+      expect("12.34-rc.5").to.match(sem_ver_regex);
+      expect("A.B").to.not.match(sem_ver_regex);
 
       delay(done);
     });
