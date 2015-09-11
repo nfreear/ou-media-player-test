@@ -1,7 +1,7 @@
 {
   "name": "ou-media-player-test",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Remote unit tests for Open Media Player, at The Open University.",
   "author": "Nick Freear <nfreear@yahoo.co.uk> (https://github.com/nfreear)",
   "devDependencies": {
