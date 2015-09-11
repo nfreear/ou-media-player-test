@@ -8,7 +8,7 @@ describe("Test OU Media Player - static json & javascript etc.", function () {
       var doc = res && res.text
         // Semantic Versioning, http://semver.org/#!spec-section-9 [Bug: #11]
         , OLD_ver_regex = /^v?\d\.\d+(\-alpha|\-beta|\-rc)?\-\d+\-g\w{7}$/
-        , sem_ver_regex = /^v?\d+\.\d+(\-(alpha|beta|rc)(\.\d)?)?(\-\d+\-g\w{7})?$/
+        , sem_ver_regex = /^v?\d+\.\d+(\.\d+)?(\-(alpha|beta|rc)(\.\d)?)?(\-\d+[\-\+]g\w{7})?$/
         // Parse JSON [Bug: #7]
         , obj = doc && JSON.parse(doc);
       log("version.JSON: " + obj);
