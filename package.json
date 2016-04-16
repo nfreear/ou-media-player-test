@@ -5,20 +5,16 @@
   "description": "Remote unit tests for Open Media Player, at The Open University.",
   "author": "Nick Freear <nfreear@yahoo.co.uk> (https://github.com/nfreear)",
   "devDependencies": {
-    "minimist": "*",
-    "request": "*",
-    "parse-rss": "*",
-    "superagent-proxy": "*",
-    "temporal": "*",
-    "mocha": "*",
-    "chai": "*",
-    "chai-http": "git+https://github.com/chaijs/chai-http#master"
-    ,
-    "webdriverio": "*",
-    "browserevent": "*"
-  },
-  "//": {
-    "chai-http": "*"
+    "browserevent": "^0.2.0",
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "minimist": "^1.2.0",
+    "mocha": "^2.4.5",
+    "parse-rss": "^1.0.3",
+    "request": "^2.71.0",
+    "superagent-proxy": "^1.0.0",
+    "temporal": "^0.5.0",
+    "webdriverio": "^4.0.5"
   },
   "scripts": {
     "test": "OUMP_NP=1 make test"
@@ -28,5 +24,5 @@
     "url": "https://github.com/nfreear/ou-media-player-test"
   },
   "keywords": [ "OpenUniversity", "OU", "IET", "IET-OU", "MediaPlayer", "test" ],
-  "license": "© 2015 The Open University."
+  "license": "© 2016 The Open University (IET)"
 }
