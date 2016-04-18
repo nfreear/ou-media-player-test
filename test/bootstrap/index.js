@@ -2,10 +2,12 @@
  * OU Media Player - test bootstrap.
  */
 
+'use strict';
+
 var R = global.R = require('./test-config');
 
 global.request = require('request');
-global.rss_parser = require("parse-rss")
+global.rss_parser = require("parse-rss");
 
 /*! Attach ES6 Shim.
  */
@@ -21,9 +23,10 @@ var chai = global.chai = require('chai');
 global.should = chai.should();
 global.expect = chai.expect;
 
-
 /*! Chai Plugins.
  */
+
+require('./chai-http-extend');
 
 //global.chai.use(require('chai-spies'));
 chai.use(require('chai-http'));
@@ -91,4 +94,3 @@ if (R.is_json) {
  */
 
 //global.chai.use(require('../..'));
-

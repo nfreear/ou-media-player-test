@@ -3,6 +3,8 @@
 */
 
 describe("Test OU Media Player - API, generated Javascript etc.", function () {
+  'use strict';
+
   this.timeout(R.timeout);
 
   it("#page: should contain a valid oembed json-p response (via php)", function (done) {
@@ -15,21 +17,19 @@ describe("Test OU Media Player - API, generated Javascript etc.", function () {
         , obj = json && JSON.parse(json);
       //log("oEmbed JSON: " + doc);
 
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
+      expect(err).to.be.a('null');
+      expect(res).to.be.an('object');  //.not.be.a('null');
 
-      res.should.have.a.status(200);
-      //res.should.be.javascript;
-      //res.should.be.utf8;
-      res.headers["content-type"].should.contain("text/javascript");
-      expect(res).to.have.header('content-type', /text\/javascript/);
+      res.should.have.status(200);
+      res.should.be.utf8();
+      res.should.have.contentType('javascript');
       res.headers.should.not.have.property("x-powered-by");
       /*res
         .headers.should.not.have.property("x-powered-by")
         .or
         .headers["x-powered-by"].should.not.contain("PHP/");
       */
-      res.headers["server"].should.not.match(/\d\.\d/);  //(/Apache/i)
+      res.headers.server.should.not.match(/\d\.\d/);  //(/Apache/i)
 
       doc.should.match(/^CB\(\{"/);
       doc.should.contain('"version":"1.0"');
@@ -51,11 +51,11 @@ describe("Test OU Media Player - API, generated Javascript etc.", function () {
       var doc = res && res.text;
       log("WEBVTT: " + doc);
 
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
+      expect(err).to.be.a('null');
+      expect(res).to.be.an('object');
 
       res.should.have.a.status(200);
-      res.headers["content-type"].should.contain("text/vtt");
+      res.should.have.contentType('text/vtt');
 
       doc.should.match(/^WEBVTT/);
       doc.should.match(/00:00:\d\d\.\d{3} --> 00:00:\d/);
@@ -71,8 +71,8 @@ describe("Test OU Media Player - API, generated Javascript etc.", function () {
     page("/scripts/jquery.oembed.js").end(function (err, res) {
       var doc = res && res.text;
 
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
+      expect(err).to.be.a('null');
+      expect(res).to.be.an('object');
 
       res.should.have.a.status(200);
       res.headers["content-type"].should.contain("application/x-javascript");

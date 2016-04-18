@@ -6,6 +6,8 @@ http://www.open.edu/openlearn/science-maths-technology/mathematics-and-statistic
 
 
 describe("Test OU Media Player - OpenLearn legacy media player", function () {
+  'use strict';
+
   this.timeout(R.timeout);
 
   it("#page: should contain html, specific classes (openlearn video) & return a 200 status", function (done) {
@@ -16,10 +18,10 @@ describe("Test OU Media Player - OpenLearn legacy media player", function () {
       "open2media%2Fjoyofstats%2Fjoy6.jpg").end(function (err, res) {
       var doc = res && res.text;
 
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
+      expect(err).to.be.a('null');
+      expect(res).to.be.an('object');
       res.should.have.a.status(200);
-      res.should.be.html;
+      res.should.have.contentType('html');
 
       expect(doc).to.match(/^<!doctype/);
       doc.should.not.contain("error-php");

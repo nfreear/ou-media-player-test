@@ -14,8 +14,8 @@ describe("Test external site (proxy/no proxy) - request", function () {
 
     request({ proxy: R.proxy, url: R.external_url }, function (error, res, doc) {
 
-      expect(error).to.be.null;
-      expect(res).to.not.be.null;
+      expect(error).to.be.a('null');
+      expect(res).to.be.an('object');
 
       res.statusCode.should.equal(200);
       //res.should.be.html;
@@ -38,9 +38,9 @@ describe("Test an external site (proxy/no proxy) - chai-http", function () {
       var doc = res && res.text;
 
       //err.message.should.contain("ENOTFOUND");
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
-      res.should.be.html;
+      expect(err).to.be.a('null');
+      expect(res).to.be.an('object');
+      res.should.have.contentType('html');
       res.should.contain("Google");
 
       delay(done);

@@ -4,10 +4,9 @@
   @link http://chaijs.com/plugins/chai-http
 */
 
-//require('./bootstrap');
-
-
 describe("Test OU Media Player - embedded podcast players", function () {
+  'use strict';
+
   this.timeout(R.timeout);
 
   it("#page: should contain html, specific classes (podcast video) & return a 200 status", function (done) {
@@ -15,11 +14,12 @@ describe("Test OU Media Player - embedded podcast players", function () {
     page("/embed/pod/student-experiences/db6cc60d6b").end(function (err, res) {
       var doc = res && res.text;
 
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
+      expect(err).to.be.a('null');
+      expect(res).to.be.an('object');  //Was: .not.be.null;
       //expect(resp.statusCode, "HTTP status code").to.equal(200);
       res.should.have.a.status(200);
-      res.should.be.html;
+      res.should.have.contentType('html');  //Was: res.should.be.html;
+      res.should.be.utf8();
 
       expect(doc).to.match(/^<!doctype/);
       doc.should.not.contain("error-php");
@@ -43,10 +43,10 @@ describe("Test OU Media Player - embedded podcast players", function () {
     page("/embed/pod/l314-spanish/fe481a4d1d").end(function (err, res) {
       var doc = res && res.text;
 
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
+      expect(err).to.be.a('null');
+      expect(res).to.be.an('object');
       res.should.have.a.status(200);
-      res.should.be.html;
+      res.should.have.contentType('html');
 
       doc.should.contain("<!doctype");
       doc.should.contain(

@@ -1,5 +1,7 @@
 
 describe("Test OU Media Player - static json & javascript etc.", function () {
+  'use strict';
+
   this.timeout(R.timeout);
 
   it("#page: should contain version.json", function (done) {
@@ -13,11 +15,11 @@ describe("Test OU Media Player - static json & javascript etc.", function () {
         , obj = doc && JSON.parse(doc);
       log("version.JSON: " + obj);
 
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
+      expect(err).to.be.a('null');
+      expect(res).to.be.an('object');
 
       res.should.have.a.status(200);
-      res.should.be.json;
+      res.should.have.contentType('application/json');
 
       doc.should.match(/^\{\"/);
       doc.should.contain('"commit":');
@@ -39,12 +41,11 @@ describe("Test OU Media Player - static json & javascript etc.", function () {
     page("/engines/mediaelement/build/jquery.js").end(function (err, res) {
       var doc = res && res.text;
 
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
+      expect(err).to.be.a('null');
+      expect(res).to.not.be.a('null');
 
       res.should.have.a.status(200);
-      //res.should.be.javascript;
-      res.headers["content-type"].should.contain("text/javascript");
+      res.should.have.contentType('text/javascript');
 
       doc.should.match(/^\/\*\!/);
       doc.should.contain('core_version = "1.9.1",');

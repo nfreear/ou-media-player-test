@@ -66,6 +66,8 @@ test-proxy:
 test-debug:
 	$(MOCHA)=http://iet-embed-acct.open.ac.uk,debug $(TESTS)
 
+test-error:
+		$(MOCHA)=http://iet-embed-acct.open.ac.uk  test/*-error-*.js
 
 selenium-install:
 	wget -P $(BIN) http://selenium-release.storage.googleapis.com/2.43/$(JAR)

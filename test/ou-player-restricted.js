@@ -1,5 +1,7 @@
 
 describe("Test OU Media Player - restricted-access players", function () {
+  'use strict';
+
   this.timeout(R.timeout);
 
   it("#page: should contain html, a link to log in & specific classes", function (done) {
@@ -8,11 +10,11 @@ describe("Test OU Media Player - restricted-access players", function () {
     page("/embed/pod/learn-about-fair-2009/0a49a38de2").end(function (err, res) {
       var doc = res && res.text;
 
-      expect(err).to.be.null;
-      expect(res).to.not.be.null;
+      expect(err).to.be.a('null');
+      expect(res).to.not.be.a('null');
 
       res.should.have.a.status(200);
-      res.should.be.html;
+      res.should.have.contentType('html');
 
       expect(doc).to.match(/^<!doctype/);
       doc.should.not.contain('error-php');
@@ -23,7 +25,7 @@ describe("Test OU Media Player - restricted-access players", function () {
       doc.should.contain("'Learn About' New Technologies");
 
       delay(done);
-    });  
+    });
   });
 
 });

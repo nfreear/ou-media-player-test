@@ -4,10 +4,10 @@
   NOTE: fails using "chai-http" - "Ranges" headers/chunking?
 */
 
-'use strict';
-
 
 describe("Test OU Podcasts - RSS feed API, etc.", function () {
+  'use strict';
+
   this.timeout(R.timeout);
 
   it("#page: should contain an rss feed & return a 200 status", function (done) {
@@ -16,7 +16,8 @@ describe("Test OU Podcasts - RSS feed API, etc.", function () {
         function (err, res, doc) {
       log('    > Path: ' + res.request.href); //res.req.path, res);
 
-      expect(err).to.be.null;
+      expect(err).to.be.a('null');
+      expect(res).to.not.be.a('null');
       res.statusCode.should.equal(200);
       //res.should.be.xml;
       res.headers["content-type"].should.contain("application/xml");
@@ -46,7 +47,7 @@ describe("Test OU Podcasts - RSS feed API, etc.", function () {
       var meta = rss[0].meta;
       //console.log("RSS: ", rss);
 
-      expect(err).to.be.null;
+      expect(err).to.be.a('null');
       //rss.statusCode.should.equal(200);
       expect(meta.title).to.contain("The Student Experience");
       expect(rss[0].title).to.contain("Student views of the OU");

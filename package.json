@@ -8,6 +8,8 @@
     "browserevent": "^0.2.0",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
     "minimist": "^1.2.0",
     "mocha": "^2.4.5",
     "parse-rss": "^1.0.3",
@@ -17,7 +19,7 @@
     "webdriverio": "^4.0.5"
   },
   "scripts": {
-    "test": "OUMP_NP=1 make test"
+    "test": "grunt; OUMP_NP=1 make test"
   },
   "repository": {
     "type": "git",

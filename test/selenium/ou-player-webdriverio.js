@@ -1,6 +1,7 @@
 /*!
 
 */
+'use strict';
 
 var webdriverio = require('webdriverio')
   , browserevent = require('browserevent')
@@ -25,7 +26,7 @@ describe('My webdriverio tests', function () {
     client
       .url(R.base + "/embed/pod/student-experiences/db6cc60d6b")
       .getTitle(function (err, title) {
-        expect(err).to.be.undefined;
+        expect(err).to.be.an('undefined');
         //assert.strictEqual(title,'GitHub · Build software better, together.');
         expect(title).to.equal('The Student Experience: Student views of the OU | OU player');
       })
@@ -35,7 +36,7 @@ describe('My webdriverio tests', function () {
 
         client
           .element('video#player1', function (err, res) {
-            expect(err).to.be.null;  //.undefined;
+            expect(err).to.be.a('null');
             expect(res.state).to.equal('success');
 
             console.log('> Element exists (<video>):', res);
@@ -58,7 +59,7 @@ describe('My webdriverio tests', function () {
           .pause(6000, function () {
 
             client.click(play_btn);
-        
+
             console.log('> Pause');
 
             done();

@@ -5,13 +5,10 @@
   @link http://chaijs.com/api/bdd/
 */
 
-'use strict';
-
-/*before(function () {
-  console.log("before");
-});*/
 
 describe("Test OU Media Player - legacy tests", function () {
+  'use strict';
+
   this.timeout(R.timeout);
 
   it("...Should return a 200 code, and contain...", function (done) {
@@ -19,8 +16,8 @@ describe("Test OU Media Player - legacy tests", function () {
     request(R.base + "/embed/pod/student-experiences/db6cc60d6b",
         function (error, res, doc) {
 
-      expect(error).to.equal.null;
-      expect(res).to.not.equal.null;
+      expect(error).to.be.a('null');
+      expect(res).to.be.an('object');
       expect(res.statusCode).to.equal(200);
 
       res.headers["content-type"].should.contain("text/html");
