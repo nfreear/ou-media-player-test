@@ -44,7 +44,7 @@ describe("Test OU Podcasts - RSS feed API, etc.", function () {
 
     // Parse RSS feed [Bug: #7]
     rss_parser(R.podcast + "/feeds/student-experiences/player.xml", function (err, rss) {
-      var meta = rss[0].meta;
+      var meta = rss && rss[0].meta;
       //console.log("RSS: ", rss);
 
       expect(err).to.be.a('null');

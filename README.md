@@ -6,7 +6,7 @@
 
 Remote integration tests for [Open Media Player][omp], by IET at The Open University.
 
-* <http://embed.open.ac.uk>
+* <https://embed.open.ac.uk>
 
 Note: this repository is an interim solution. Naturally, we want the tests in the same code-base as the Player.
 
@@ -53,14 +53,14 @@ At a terminal, type `crontab -e`:
 
 
 ---
-© 2016 The Open University. ([Institute of Educational Technology][iet])
+© 2016-2018 The Open University. ([Institute of Educational Technology][iet])
 
-[omp]: http://iet-ou.github.io/open-media-player/
+[omp]: https://iet-ou.github.io/open-media-player/
 [omp-wiki]: https://github.com/IET-OU/open-media-player/wiki
 [test]: http://iet-embed-acct.open.ac.uk/dev/ou-media-player-test/report/ "Remote integration tests: status"
 [test-img]: http://iet-embed-acct.open.ac.uk/dev/ou-media-player-test/report/svg/
 
-[iet]:     http://iet.open.ac.uk/
+[iet]:     https://iet.open.ac.uk/
 [node.js]: http://nodejs.org/
 [mocha]:   http://mochajs.org/
 [chai]:    http://chaijs.com/

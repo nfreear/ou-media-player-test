@@ -2,7 +2,7 @@
   "name": "nfreear/ou-media-player-test",
   "description": "Remote integration tests for Open Media Player, by IET-OU. © 2015 The Open University.",
   "license": "proprietary",
-  "homepage": "http://iet-ou.github.io/open-media-player/",
+  "homepage": "https://iet-ou.github.io/open-media-player/",
   "time": "2015-02-13",
   "support": {
     "source": "https://github.com/nfreear/ou-media-player-test"

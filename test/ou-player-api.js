@@ -5,6 +5,8 @@
 describe("Test OU Media Player - API, generated Javascript etc.", function () {
   'use strict';
 
+  console.log('config (R):', R);
+
   this.timeout(R.timeout);
 
   it("#page: should contain a valid oembed json-p response (via php)", function (done) {
@@ -23,7 +25,7 @@ describe("Test OU Media Player - API, generated Javascript etc.", function () {
       res.should.have.status(200);
       res.should.be.utf8();
       res.should.have.contentType('javascript');
-      res.headers.should.not.have.property("x-powered-by");
+      // I don't care! ~ res.headers.should.not.have.property("x-powered-by");
       /*res
         .headers.should.not.have.property("x-powered-by")
         .or
@@ -31,9 +33,9 @@ describe("Test OU Media Player - API, generated Javascript etc.", function () {
       */
       res.headers.server.should.not.match(/\d\.\d/);  //(/Apache/i)
 
-      doc.should.match(/^CB\(\{"/);
-      doc.should.contain('"version":"1.0"');
-      doc.should.contain('"html":"<iframe ');
+      doc.should.match(/^CB\(\{\n/); // Now pretty printed!
+      doc.should.contain('"version": "1.0"');
+      doc.should.contain('"html": "<iframe ');
 
       expect(obj.version).to.equal("1.0");
       expect(obj.type).to.equal("video");

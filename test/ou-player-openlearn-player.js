@@ -27,7 +27,7 @@ describe("Test OU Media Player - OpenLearn legacy media player", function () {
       doc.should.not.contain("error-php");
 
       doc.should.contain(
-        "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js");
+        "https://unpkg.com/jquery@3.2.1/dist/jquery.min.js");
 
       doc.should.contain/*.htmlClass*/("mtype-video");
       doc.should.contain/*.htmlClass*/("ctx-Openlearn_Player");
