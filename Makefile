@@ -22,8 +22,8 @@ MOCHA = NODE_ENV=test ./node_modules/.bin/mocha \
     --require ./test/bootstrap \
     --reporter $(REPORTER) $(GREP) \
     --globals $(NOPROXY)base
-TESTS = test/ou-pl*.js
-# Was: TESTS = test/ou-p*.js
+TESTS = test/ou-p*.js
+# Was: TESTS = test/ou-pl*.js
 OUT = _out/
 BIN = _bin/
 
