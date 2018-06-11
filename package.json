@@ -1,16 +1,14 @@
 {
-  "name": "ou-media-player-test",
   "private": true,
-  "version": "0.2.0",
+  "name": "ou-media-player-test",
+  "version": "1.0.0",
   "description": "Remote unit tests for Open Media Player, at The Open University.",
   "author": "Nick Freear <nfreear@yahoo.co.uk> (https://github.com/nfreear)",
   "engines": { "node": ">= 0.10 || >= 6" },
-  "devDependencies": {
+  "dependencies": {
     "browserevent": "^0.2.0",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
-    "grunt": "^1.0.1",
-    "grunt-contrib-jshint": "^1.0.0",
     "minimist": "^1.2.0",
     "mocha": "^2.4.5",
     "parse-rss": "^1.0.3",
@@ -19,7 +17,14 @@
     "temporal": "^0.5.0",
     "webdriverio": "^4.0.5"
   },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "semistandard": "^12.0.1"
+  },
   "scripts": {
+    "fix": "eslint --fix test/ou-player-api.js",
+    "semi": "eslint test/ou-player-api.js",
     "test": "grunt; OUMP_NP=1 make test"
   },
   "repository": {
@@ -27,6 +32,13 @@
     "url": "https://github.com/nfreear/ou-media-player-test"
   },
   "keywords": [ "OpenUniversity", "OU", "IET", "IET-OU", "MediaPlayer", "test" ],
+  "eslintConfig": {
+    "extends": "semistandard",
+    "globals": { "describe": false, "it": false, "expect": false, "R": true, "page": true, "delay": true, "log": false }
+  },
+  "semistandard": {
+    "exclude": [ "ou-p*" ]
+  },
   "homepage": "https://iet-ou.github.io/open-media-player/",
   "license": "UNLICENSED",
   "x-copyright": "© 2016 The Open University (IET)"

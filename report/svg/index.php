@@ -23,7 +23,8 @@ header( 'Content-Type: image/svg+xml; charset=utf-8' );
 
 if (! $parser->has_passed()):
     ?>
-<svg xmlns="http://www.w3.org/2000/svg" width="115" height="20">
+<svg xmlns="http://www.w3.org/2000/svg" width="115" height="20" xml:lang="en">
+  <title>integration - failing</title>
 <linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient>
 <mask id="a"><rect width="115" height="20" rx="3" fill="#fff"/></mask>
 <g mask="url(#a)">
@@ -36,7 +37,8 @@ if (! $parser->has_passed()):
 else: // "Passing"
 
     ?>
-<svg xmlns="http://www.w3.org/2000/svg" width="124" height="20">
+<svg xmlns="http://www.w3.org/2000/svg" width="124" height="20" xml:lang="en">
+  <title>integration - passing</title>
 <linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient>
 <mask id="a"><rect width="124" height="20" rx="3" fill="#fff"/></mask>
 <g mask="url(#a)">

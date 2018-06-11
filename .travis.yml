@@ -15,12 +15,16 @@ before_install:
   # - npm install npm -g
   # - npm install mocha@^2.4 -g
   - if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then echo "** I AM CRON **"; fi
-  - echo $TRAVIS_EVENT_TYPE
+  - echo 'TRAVIS_EVENT_TYPE = ' $TRAVIS_EVENT_TYPE
+
+before_script: echo OU MEDIA PLAYER INTEGRATION TESTS
 
 script:
   #- sleep 1
   - npm test
   #- OUMP_NP=1 make test-one
+
+after_script: npm run semi
 
 notifications:
   webhooks:
