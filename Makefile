@@ -106,7 +106,7 @@ mocha-help:
 sanity-check:
 	@rm -f $(OUT)version.json
 	@wget -v -P $(OUT) http://iet-embed-acct.open.ac.uk/version.json
-	#more $(OUT)version.json
+	# more $(OUT)version.json
 
 .PHONY: help test test-it-player-acct test-it-player-live test-iet-embed-acct test-iet-embed-live mocha-help crontab
 
