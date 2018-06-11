@@ -5,6 +5,7 @@
 */
 
 (function (W) {
+  'use strict';
 
   var P = W.SP = {};
 

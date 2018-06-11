@@ -2,20 +2,20 @@
   Copyright (c) 2015 Nick Freear.
 */
 
-(function (W) {
+(function (W, D, L, superagent, SP) {
+  'use strict';
 
   var spec_file = "../_out/report-spec.txt"
     , json_file = "../_out/report.json"
-    , get = W.superagent.get
-    , q = function (s) { return document.querySelector(s); }
+    , q = function (s) { return D.querySelector(s); }
     , $spec = q("#report-spec")
     , $date = q("#test-date span")
     , $version = q("#report-urls [href *= version]")
     , $url  = q("#test-url a");
 
-  json_file = W.location.href.match(/json/) ? json_file : false;
+  json_file = L.href.match(/json/) ? json_file : false;
 
-  get(spec_file, function (resp) {
+  superagent.get(spec_file).then(function (resp) {
     var doc = resp && resp.text
       , result_r = SP.parse(doc)
       , html = SP.asHtml(result_r.lines);
@@ -28,7 +28,7 @@
 
 
   if (json_file) {
-    get(json_file, function (resp) {
+    superagent.get(json_file).then(function (resp) {
       var spec;
       console.log(resp);
       if (200 === resp.status) {
@@ -44,4 +44,4 @@
     });
   }
 
-})(window);
+})(window, window.document, window.location, window.superagent, window.SP);

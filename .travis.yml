@@ -11,13 +11,12 @@ cache:
   directories:
     - node_modules ## NPM packages.
 
-before_install:
+before_install: echo '# OU Media Player integration tests #'
   # - npm install npm -g
   # - npm install mocha@^2.4 -g
-  - if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then echo "** I AM CRON **"; fi
-  - echo 'TRAVIS_EVENT_TYPE =' $TRAVIS_EVENT_TYPE
+  # - if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then echo "** I AM CRON **"; fi
 
-before_script: echo OU MEDIA PLAYER INTEGRATION TESTS
+before_script: echo 'TRAVIS_EVENT_TYPE =' $TRAVIS_EVENT_TYPE
 
 script:
   #- sleep 1

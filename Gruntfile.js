@@ -24,10 +24,12 @@ module.exports = function (grunt) {
 				//'-W069': true,  // Ignore ['a'] is better written in dot notation;
         node: true,  //globals: { module:false, require:false, console:false, process:false, __dirname:false }
 				globals: {
+					window: false,
 					describe: false, it: false, expect: false, after: false, before: false,
 					request: false, page: false, external: false, log: false, rss_parser: false, delay: true, R: true
 				}
 			},
+			report: 'report/*.js',
 			test:  'test/**/*.js',
 			grunt: 'Gruntfile.js'
 		},
