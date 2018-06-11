@@ -21,7 +21,7 @@ Built on: [mocha], [chai], [chai-http] and [webdriver.io].
 ## Install
 
 1. Clone the repo.
-2. In a terminal type, `npm install && make test`
+2. In a terminal type, `npm install && npm test`
 
 
 ## Proxy - pre-install

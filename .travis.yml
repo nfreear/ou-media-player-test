@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - "0.10"
+  # - "0.10" # skip for now ?!
   - 6
 
 git:
@@ -14,6 +14,8 @@ cache:
 before_install:
   # - npm install npm -g
   # - npm install mocha@^2.4 -g
+  - if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then echo "** I AM CRON **"; fi
+  - echo $TRAVIS_EVENT_TYPE
 
 script:
   #- sleep 1
